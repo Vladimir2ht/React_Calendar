@@ -1,77 +1,48 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import Set_day from './Set day function';
 
-const Thead = styled.thead`
-	float: left;   
+const Scroller = styled.div`
+	height: 535px;
+	overflow-y: scroll;
 `;
-const Th = styled.tr`
-	display: block;
+const Tabl = styled.table`
+	border-collapse: collapse;
+	position: relative;
+	left: 29px;
+	`;
+const Td = styled.td`
+	width: 37px;
+	height: 37px;
+	background-color: white;
+	border: 2px solid #dfdfdf;
 `;
-const Tbody = styled.tbody`
-	float: right;
+const Tdh = styled.td`
+
+	height: 37px;
+	padding: 0px 5px;
+	text-align: center;
+	background-color: white;
+	border: 2px solid #dfdfdf;
 `;
 
-function Table({dates}) {
+function Table({date}) {
+	
+	function Table_creator() {
+		let content = [];
+		for (let ind = 0; ind < 24; ind++) {
+			content[ind] = <tr key={ind}><Tdh>{ind}:00</Tdh>{Set_day(date).map(day => <Td key={day}/>)}</tr>
+		}
+		return content;
+	}
 
-  let [interviews, set_interview] = useState([])
-
-console.log(dates);
 	return (
-   	<table>
-			<Thead>
-				<Th><td>00:00</td></Th>
-				<Th><td>01:00</td></Th>
-				<Th><td>02:00</td></Th>
-				<Th><td>03:00</td></Th>
-				<Th><td>04:00</td></Th>
-				<Th><td>05:00</td></Th>
-				<Th><td>06:00</td></Th>
-				<Th><td>07:00</td></Th>
-				<Th><td>08:00</td></Th>
-				<Th><td>09:00</td></Th>
-				<Th><td>10:00</td></Th>
-				<Th><td>11:00</td></Th>
-				<Th><td>12:00</td></Th>
-				<Th><td>13:00</td></Th>
-				<Th><td>14:00</td></Th>
-				<Th><td>15:00</td></Th>
-				<Th><td>16:00</td></Th>
-				<Th><td>17:00</td></Th>
-				<Th><td>18:00</td></Th>
-				<Th><td>19:00</td></Th>
-				<Th><td>20:00</td></Th>
-				<Th><td>21:00</td></Th>
-				<Th><td>22:00</td></Th>
-				<Th><td>23:00</td></Th>
-			</Thead>
-			<Tbody>
-				<tr><td>1</td><td>4</td></tr>
-				<tr><td>2</td></tr>
-				<tr><td>3</td></tr>
-				<tr><td>3</td></tr>
-				<tr><td>3</td></tr>
-				<tr><td>1</td><td>4</td></tr>
-				<tr><td>2</td></tr>
-				<tr><td>3</td></tr>
-				<tr><td>3</td></tr>
-				<tr><td>3</td></tr>
-				<tr><td>1</td><td>4</td></tr>
-				<tr><td>2</td></tr>
-				<tr><td>3</td></tr>
-				<tr><td>3</td></tr>
-				<tr><td>3</td></tr>
-				<tr><td>1</td><td>4</td></tr>
-				<tr><td>2</td></tr>
-				<tr><td>3</td></tr>
-				<tr><td>3</td></tr>
-				<tr><td>3</td></tr>
-				<tr><td>1</td><td>4</td></tr>
-				<tr><td>2</td></tr>
-				<tr><td>3</td></tr>
-				<tr><td>3</td></tr>
-				
-			</Tbody>
-		</table>
+		<Scroller>
+   	<Tabl>
+			<tbody>
+				{Table_creator()}
+			</tbody>
+		</Tabl>
+		</Scroller>
   );
 }
 
