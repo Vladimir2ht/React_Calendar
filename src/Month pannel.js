@@ -5,30 +5,32 @@ import Set_day from './Set day function';
 
 const Li = styled.li`
 display: inline-block;
-padding: 10px;
-width: 20px;
+width: clamp(36px, calc(36 * (100vw / 440)), 55px);
+position: relative;
 `;
 const Ul = styled.ul`
 position: relative;
-top: 5px;
+left: min(calc(36 * (100vw / 440)), 5%);
+padding-inline-start: 0px;
 `;
 const Pannel_font = styled.div`
 background-color: #efefef;
 `;
 const Red_round = styled.div`
+--side: clamp(30px, calc(32 * (100vw / 550)), 40px);
+width: var(--side);
+height: var(--side);
 background-color: red;
 border-radius: 50%;
 color: white;
-width: 30px;
-height: 30px;
-position: relative;
-bottom: 7px;
-right: 5px;
+position: absolute;
+bottom: clamp(-13px, calc(12 * (100vw / 480)*-1), -10px);;
+right: clamp(14px, calc(16 * (100vw / 440)), 20px);
 text-align: center;
 `;
 const Bold= styled.b`
 position: relative;
-top: 7px;
+top: clamp(8px, calc(6 * (100vw / 440)), 10px);
 `;
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June',
@@ -51,18 +53,19 @@ function Month_pannel({date, set_date}) {
   return (
     <Pannel_font>
       <Div >
-        <Button content="<" func={Which_day} type="left"/>
+        <Button content="<" func={Which_day}/>
         <Ul>
-          {Set_day(date).map((day, i) => (day === date.getDate()) ? <Li key={i}><Red_round><Bold>{day}</Bold></Red_round></Li> : <Li key={i}><b>{day}</b></Li>
-					
+          {Set_day(date).map((day, i) => (day === date.getDate()) ? <Li key={i}>
+						<Red_round><Bold>{day}</Bold></Red_round>
+						</Li> : <Li key={i}><b>{day}</b></Li>
 					)}
         </Ul>
-        <Button content=">" func={Which_day} type="right"/>
+        <Button content=">" func={Which_day}/>
       </Div>
       <Div margin={"padding-bottom: 3px"}>
-        <Button content="<" func={Set_month} type="left"/>
+        <Button content="<" func={Set_month}/>
         <b>{months[date.getMonth()]} {date.getFullYear()}</b>
-        <Button content=">" func={Set_month} type="right"/>
+        <Button content=">" func={Set_month}/>
       </Div>
     </Pannel_font>
 )}

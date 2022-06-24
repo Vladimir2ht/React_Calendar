@@ -5,27 +5,31 @@ const Butto = styled.button`
 	border: 0px;
 	color: red;
 	font-size: ${props => props.font_size };
+	visibility: ${props => props.show };
 `;
 
-function Button({content, func, type}) {
+function Button({content, func, to_delet}) {
   
-	var Button_function;
+	var Button_function = () => func();
+	let font_size = "20px";
+	let show = "visible";
 
-	switch(type) {
-    case "left":
+	switch(content) {
+    case "<":
       Button_function = () => func(-1);
 			break
-    case "right":
+    case ">":
       Button_function = () => func(+1);
 			break
+    case "Delete":
+			show = (to_delet || to_delet === 0) ? "visible" : "hidden";
+			break
 		default:
-      Button_function = () => func();
+			font_size = (content === "+") ? "50px" : "20px";
 	}
 
-	let font_size = (content === "+") ? "50px" : "20px";
-
   return (
-    <Butto onClick={Button_function} font_size={font_size}>
+    <Butto onClick={Button_function} font_size={font_size} show={show}>
       <b>{content}</b>
     </Butto>
   );
