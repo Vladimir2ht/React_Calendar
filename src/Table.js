@@ -21,9 +21,11 @@ const Td_alt = styled.td`
 	width: var(--side);
 	height: var(--side);
 	border: 2px solid #dfdfdf;
-	background-color: #c5c1ff;
+	background-color: #d5d1ff;
+	&:focus {
+		background-color: #7c73ff;
+	}
 	`;
-	// background-color: #7c73ff;
 const Tdh = styled.td`
 	padding: 0px 5px;
 	text-align: center;
@@ -36,7 +38,7 @@ function Table({date, interviews, set_deleting_meeting}) {
 		var Func;
 		Func = () => {set_deleting_meeting(index)};
 		return (
-		<Td_alt onClick={Func}/>
+		<Td_alt onClick={Func} tabIndex="0"/>
 		);
 	}
 
